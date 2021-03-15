@@ -1,0 +1,13 @@
+D:\.net\ps1\ps1\bin\Debug\netcoreapp3.1\ps1.exe
+D:\.net\ps1\ps1\bin\Debug\netcoreapp3.1\ps1.deps.json
+D:\.net\ps1\ps1\bin\Debug\netcoreapp3.1\ps1.runtimeconfig.json
+D:\.net\ps1\ps1\bin\Debug\netcoreapp3.1\ps1.runtimeconfig.dev.json
+D:\.net\ps1\ps1\bin\Debug\netcoreapp3.1\ps1.dll
+D:\.net\ps1\ps1\bin\Debug\netcoreapp3.1\ps1.pdb
+D:\.net\ps1\ps1\obj\Debug\netcoreapp3.1\ps1.csprojAssemblyReference.cache
+D:\.net\ps1\ps1\obj\Debug\netcoreapp3.1\ps1.AssemblyInfoInputs.cache
+D:\.net\ps1\ps1\obj\Debug\netcoreapp3.1\ps1.AssemblyInfo.cs
+D:\.net\ps1\ps1\obj\Debug\netcoreapp3.1\ps1.csproj.CoreCompileInputs.cache
+D:\.net\ps1\ps1\obj\Debug\netcoreapp3.1\ps1.dll
+D:\.net\ps1\ps1\obj\Debug\netcoreapp3.1\ps1.pdb
+D:\.net\ps1\ps1\obj\Debug\netcoreapp3.1\ps1.genruntimeconfig.cache
