@@ -6,11 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PS2.Forms;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace PS2.Pages
 {
     public class IndexModel : PageModel
     {
+        public List<Address> AddressList { get; set; }
         private readonly ILogger<IndexModel> _logger;
         [BindProperty]
         public Address Address { get; set; }
@@ -27,14 +30,20 @@ namespace PS2.Pages
             {
                 Name = "User";
             }
+
         }
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return Page();
+                var SessionAddressList = HttpContext.Session.GetString("SessionAddressList");
+                if (SessionAddressList != null) AddressList = JsonConvert.DeserializeObject<List<Address>>(SessionAddressList);
+                else AddressList = new List<Address>();
+                AddressList.Add(Address);
+                HttpContext.Session.SetString("SessionAddressList", JsonConvert.SerializeObject(AddressList));
+                return RedirectToPage("./Address");
             }
-            return RedirectToPage("./Privacy");
+            else return Page();
         }
     }
 }

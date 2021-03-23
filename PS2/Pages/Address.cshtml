@@ -1,0 +1,33 @@
+﻿@page
+@model PS2.Pages.AddressModel
+@{
+}
+
+<p>Dane w zapisane w sesji</p>
+@if (Model.AddressList != null)
+{
+    int i = 1;
+    foreach (Forms.Address address in Model.AddressList)
+    {
+        <p>
+            @i:
+        </p>
+        <p>
+            @Html.DisplayNameFor(model => Model.Address.Street):
+            @address.Street
+        </p>
+        <p>
+            @Html.DisplayNameFor(model => Model.Address.City):
+            @address.City
+        </p>
+        <p>
+            @Html.DisplayNameFor(model => Model.Address.Number):
+            @address.Number
+        </p>
+        <p>
+            @Html.DisplayNameFor(model => Model.Address.ZipCode):
+            @address.ZipCode
+        </p>
+        i++;
+    }
+}
