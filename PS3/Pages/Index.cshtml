@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "FizzBuzz";
+}
+
+<div class="text-center">
+    <h1 class="display-4">FizzBuzz</h1>
+    <br />
+    <form method="post">
+        <div class="container">
+            <label asp-for="Search.Number"></label>
+            <input asp-for="Search.Number" class="form-control w-25" style="margin:auto;" /><br />
+            <p class="font-weight-bold">
+                <span asp-validation-for="Search.Number" class="text-danger" font></span>
+            </p>
+            @if (!string.IsNullOrWhiteSpace(Model.Result))
+            {
+                if (Model.Result == "bad")
+                {
+                    <p>Liczba: @Model.Number nie spełnia kryteriów Fizz/Buzz</p>
+                }
+                else
+                {
+                    <p>Otrzymano: @Model.Result</p>
+                }
+            }
+        </div>
+        <button type="submit" class="btn btn-primary">Wyszukaj</button>
+    </form>
+</div>
+
+

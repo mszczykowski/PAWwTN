@@ -1,0 +1,35 @@
+﻿@page
+@model PS3.Pages.LastSearchModel
+@{
+    ViewData["Title"] = "Ostatnie wyszukiwania";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br>
+
+@if (Model.SearchList == null)
+{
+    <p>Nic tu nie ma</p>
+}
+else
+{
+    <p>Ostatnie wyszukiwanie:</p>
+    <p>
+        <b>@Html.DisplayNameFor(model => Model.SearchList[0].Number):</b> @Model.SearchList[0].Number<br />
+        <b>@Html.DisplayNameFor(model => Model.SearchList[0].Result):</b> @Model.SearchList[0].ResultToString()<br />
+        <b>@Html.DisplayNameFor(model => Model.SearchList[0].SearchDate):</b>  @Model.SearchList[0].SearchDate
+    </p>
+    <br>
+    if (Model.SearchList.Count > 1)
+    {
+        <p>Pozostałe wyszukiwania:</p>
+        foreach (Forms.Search search in Model.SearchList.Skip(1))
+        {
+            <p>
+                <b>@Html.DisplayNameFor(model => search.Number):</b> @search.Number<br />
+                <b>@Html.DisplayNameFor(model => search.Result):</b> @search.ResultToString()<br />
+                <b>@Html.DisplayNameFor(model => search.SearchDate):</b>  @search.SearchDate
+            </p>
+        }
+    }
+}
