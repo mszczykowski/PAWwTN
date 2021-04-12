@@ -17,14 +17,20 @@ namespace PS3.Forms
         public string Result { get; set; }
         [Display(Name = "Data wyszukiwania")]
         public DateTime SearchDate { get; set; }
-        public void UpdateDate()
-        {
-            SearchDate = DateTime.Now;
-        }
         public string ResultToString()
         {
             if (Result == "bad") return "nie spełnia FizzBuzz";
             else return Result;
+        }
+        public void CalculateFizzBuzz()
+        {
+            if(Number != null)
+            {
+                SearchDate = DateTime.Now;
+                if (Number % 3 == 0) Result += "Fizz";
+                if (Number % 5 == 0) Result += "Buzz";
+                if (Number % 3 != 0 && Number % 5 != 0) Result += "bad";
+            }
         }
     }
 }

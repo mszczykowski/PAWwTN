@@ -37,10 +37,7 @@ namespace PS3.Pages
                 var SessionSearchList = HttpContext.Session.GetString("SessionSearchList");
                 if (SessionSearchList != null) SearchList = JsonConvert.DeserializeObject<List<Search>>(SessionSearchList);
                 else SearchList = new List<Search>();
-                Search.UpdateDate();
-                if (Search.Number % 3 == 0) Search.Result += "Fizz";
-                if (Search.Number % 5 == 0) Search.Result += "Buzz";
-                if (Search.Number % 3 != 0 && Search.Number % 5 != 0) Search.Result += "bad";
+                Search.CalculateFizzBuzz();
                 SearchList.Add(Search);
                 HttpContext.Session.SetString("SessionSearchList", JsonConvert.SerializeObject(SearchList));
                 return RedirectToPage("./Index/", new { Result = Search.Result, Number = Search.Number});
