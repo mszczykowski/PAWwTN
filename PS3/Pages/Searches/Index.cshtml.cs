@@ -23,7 +23,7 @@ namespace PS3.Pages.Searches
 
         public async Task OnGetAsync()
         {
-            Search = await _context.Search.OrderByDescending(p => p.SearchDate).Take(10).ToListAsync();
+            Search = await _context.Search.Take(10).OrderByDescending(p => p.SearchDate).ToListAsync();
         }
     }
 }
