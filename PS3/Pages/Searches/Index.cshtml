@@ -1,0 +1,45 @@
+﻿@page
+@model PS3.Pages.Searches.IndexModel
+
+@{
+    ViewData["Title"] = "Baza Danych";
+}
+
+<h1>Baza Danych</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Search[0].Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Search[0].Result)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Search[0].SearchDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Search) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @item.ResultToString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SearchDate)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id">Szczegóły</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Usuń</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

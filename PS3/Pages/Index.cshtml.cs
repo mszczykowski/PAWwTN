@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using PS3.Forms;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using PS3.Data;
 
 namespace PS3.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        [BindProperty] 
+        [BindProperty]
         public Search Search { get; set; }
         public List<Search> SearchList { get; set; }
-        [BindProperty(SupportsGet = true)]
-        public String Result { get; set; }
-        [BindProperty(SupportsGet = true)]
-        public int Number { get; set; }
-        public IndexModel(ILogger<IndexModel> logger)
+        public bool ShowResult { get; set; }
+        private readonly SearchContext _context;
+        public IndexModel(ILogger<IndexModel> logger, SearchContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public void OnGet()
@@ -37,17 +37,17 @@ namespace PS3.Pages
                 var SessionSearchList = HttpContext.Session.GetString("SessionSearchList");
                 if (SessionSearchList != null) SearchList = JsonConvert.DeserializeObject<List<Search>>(SessionSearchList);
                 else SearchList = new List<Search>();
-                Search.UpdateDate();
-                if (Search.Number % 3 == 0) Search.Result += "Fizz";
-                if (Search.Number % 5 == 0) Search.Result += "Buzz";
-                if (Search.Number % 3 != 0 && Search.Number % 5 != 0) Search.Result += "bad";
+                Search.CalculateFizzBuzz();
+                _context.Search.Add(Search);
+                _context.SaveChanges();
                 SearchList.Add(Search);
                 HttpContext.Session.SetString("SessionSearchList", JsonConvert.SerializeObject(SearchList));
-                return RedirectToPage("./Index/", new { Result = Search.Result, Number = Search.Number});
+                ShowResult = true;
+                return Page();
             }
             else
             {
-                Result = null;
+                ShowResult = false;
                 return Page();
             }
         }

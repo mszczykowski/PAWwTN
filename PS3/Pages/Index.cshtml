@@ -14,15 +14,15 @@
             <p class="font-weight-bold">
                 <span asp-validation-for="Search.Number" class="text-danger" font></span>
             </p>
-            @if (!string.IsNullOrWhiteSpace(Model.Result))
+            @if (Model.ShowResult)
             {
-                if (Model.Result == "bad")
+                if (Model.Search.Result == 0)
                 {
-                    <p>Liczba: @Model.Number nie spełnia kryteriów Fizz/Buzz</p>
+                    <p>Liczba: @Model.Search.Number nie spełnia kryteriów Fizz/Buzz</p>
                 }
                 else
                 {
-                    <p>Otrzymano: @Model.Result</p>
+                    <p>Otrzymano: @Model.Search.ResultToString()</p>
                 }
             }
         </div>
