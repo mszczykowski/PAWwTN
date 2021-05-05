@@ -1,5 +1,5 @@
 ﻿@page
-@model PS3.Pages.Searches.IndexModel
+@model FizzBuzzWeb.Pages.Searches.IndexModel
 
 @{
     ViewData["Title"] = "Baza Danych";
@@ -24,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Search) {
+@foreach (var item in Model.Search.Take(20)) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Number)
@@ -36,8 +36,12 @@
                 @Html.DisplayFor(modelItem => item.SearchDate)
             </td>
             <td>
-                <a asp-page="./Details" asp-route-id="@item.Id">Szczegóły</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Usuń</a>
+                @if (Model.UserID == item.OwnerID)
+                {
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Usuń |</a>
+                }
+                <a asp-page="./Details" asp-route-id="@item.Id">Szczegóły</a>
+
             </td>
         </tr>
 }

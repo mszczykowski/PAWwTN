@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using PS3.Forms;
+using FizzBuzzWeb.Forms;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace PS3.Pages
+namespace FizzBuzzWeb.Pages
 {
     public class LastSearchModel : PageModel
     {

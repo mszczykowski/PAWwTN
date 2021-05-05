@@ -5,18 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PS3.Data;
-using PS3.Forms;
+using FizzBuzzWeb.Data;
+using FizzBuzzWeb.Forms;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
-namespace PS3.Pages.Searches
+namespace FizzBuzzWeb.Pages.Searches
 {
+    [Authorize]
     public class DeleteModel : PageModel
     {
-        private readonly PS3.Data.SearchContext _context;
+        private readonly FizzBuzzWeb.Data.SearchContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public DeleteModel(PS3.Data.SearchContext context)
+        public DeleteModel(FizzBuzzWeb.Data.SearchContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [BindProperty]
@@ -47,7 +52,7 @@ namespace PS3.Pages.Searches
 
             Search = await _context.Search.FindAsync(id);
 
-            if (Search != null)
+            if (Search != null && Search.OwnerID == _userManager.GetUserId(User))
             {
                 _context.Search.Remove(Search);
                 await _context.SaveChangesAsync();

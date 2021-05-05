@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PS3.Data;
+using FizzBuzzWeb.Data;
 
-namespace PS3.Migrations
+namespace FizzBuzzWeb.Migrations
 {
     [DbContext(typeof(SearchContext))]
     [Migration("20210413215602_Initial")]

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PS3.Migrations
+namespace FizzBuzzWeb.Migrations
 {
     public partial class Initial : Migration
     {

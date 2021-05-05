@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace PS3.Forms
+namespace FizzBuzzWeb.Forms
 {
     public class Search
     {
         public int Id { get; set; }
+        public string OwnerID { get; set; }
         [Required(ErrorMessage = "Pole jest obowiązkowe")]
         [Display(Name = "Wartość")]
         [Range(1,1000, ErrorMessage = "Dopuszczalne są wartości od 1 do 1000")]

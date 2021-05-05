@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PS3.Data;
-using PS3.Forms;
+using FizzBuzzWeb.Data;
+using FizzBuzzWeb.Forms;
 
-namespace PS3.Pages.Searches
+namespace FizzBuzzWeb.Pages.Searches
 {
     public class DetailsModel : PageModel
     {
-        private readonly PS3.Data.SearchContext _context;
+        private readonly FizzBuzzWeb.Data.SearchContext _context;
 
-        public DetailsModel(PS3.Data.SearchContext context)
+        public DetailsModel(FizzBuzzWeb.Data.SearchContext context)
         {
             _context = context;
         }

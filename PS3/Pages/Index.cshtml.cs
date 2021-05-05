@@ -5,25 +5,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PS3.Forms;
+using FizzBuzzWeb.Forms;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using PS3.Data;
+using FizzBuzzWeb.Data;
+using Microsoft.AspNetCore.Identity;
 
-namespace PS3.Pages
+namespace FizzBuzzWeb.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         [BindProperty]
         public Search Search { get; set; }
         public List<Search> SearchList { get; set; }
         public bool ShowResult { get; set; }
         private readonly SearchContext _context;
-        public IndexModel(ILogger<IndexModel> logger, SearchContext context)
+        public IndexModel(ILogger<IndexModel> logger, SearchContext context, 
+            UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _logger = logger;
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public void OnGet()
@@ -37,6 +43,8 @@ namespace PS3.Pages
                 var SessionSearchList = HttpContext.Session.GetString("SessionSearchList");
                 if (SessionSearchList != null) SearchList = JsonConvert.DeserializeObject<List<Search>>(SessionSearchList);
                 else SearchList = new List<Search>();
+                var userID = _userManager.GetUserId(User);
+                Search.OwnerID = userID;
                 Search.CalculateFizzBuzz();
                 _context.Search.Add(Search);
                 _context.SaveChanges();

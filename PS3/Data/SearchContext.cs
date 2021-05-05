@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PS3.Forms;
+using FizzBuzzWeb.Forms;
 
-namespace PS3.Data
+namespace FizzBuzzWeb.Data
 {
     public class SearchContext : DbContext
     {
