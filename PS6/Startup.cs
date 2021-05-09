@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PS6.Utils;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace PS6
 {
@@ -45,6 +47,12 @@ namespace PS6
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+            ForwardedHeaders.XForwardedProto
+            });
 
             app.UseAuthorization();
             app.UseBrowserNameMiddleware();

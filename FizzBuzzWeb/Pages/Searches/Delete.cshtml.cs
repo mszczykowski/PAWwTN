@@ -52,7 +52,7 @@ namespace FizzBuzzWeb.Pages.Searches
 
             Search = await _context.Search.FindAsync(id);
 
-            if (Search != null && Search.OwnerID == _userManager.GetUserId(User))
+            if (Search != null && Search.OwnerID != null && Search.OwnerID == _userManager.GetUserId(User))
             {
                 _context.Search.Remove(Search);
                 await _context.SaveChangesAsync();
